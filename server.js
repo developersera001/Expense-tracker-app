@@ -51,8 +51,8 @@ app.get('*',function(req,res){
 })
 
 
-//listen server
-app.listen(PORT ,()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+// //listen server
+// app.listen(PORT ,()=>{
+//     console.log(`Server running on port ${PORT}`)
+// })
 
