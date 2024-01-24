@@ -10,7 +10,7 @@ const connectDB = require('./config/connectDB')
 dotenv.config();
 
 //port
-const PORT = 8080 || process.env.PORT
+const PORT = process.env.PORT
 
 
 // //database call
