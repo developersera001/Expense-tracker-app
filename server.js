@@ -13,8 +13,8 @@ dotenv.config();
 const PORT = 8080 || process.env.PORT
 
 
-//database call
-connectDB()
+// //database call
+// connectDB()
 
 
 //rest object 
@@ -32,11 +32,17 @@ app.use("/api/v1/users",require("./routes/userRoute"))
 //transection routes
 app.use("/api/v1/transections", require("./routes/transectionRoutes"));
 
+// Connect to MongoDB and then start the server
 connectDB().then(() => {
     app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
-})
+      console.log(`Server running on port ${PORT}`);
+      console.log("Listening for requests");
+    });
+  })
+    .catch(error => {
+      console.error("Error connecting to MongoDB:", error);
+      process.exit(1); // Exit if connection fails
+    });
 
 //static files
 app.use(express.static(path.join(__dirname,"./client/build")))

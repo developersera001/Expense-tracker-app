@@ -1,25 +1,40 @@
-const mongoose = require('mongoose')
-const colors = require('colors')
+// const mongoose = require('mongoose')
+// const colors = require('colors')
 
-// function create karenge database se connect karne ke liye
+// // function create karenge database se connect karne ke liye
+
+// // const connectDB = async () => {
+// //     try {
+// //         await mongoose.connect(process.env.MONGO_URL)
+// //         console.log(`Server Running on ${mongoose.connection.host}`.bgCyan.white);
+// //     } catch (error) {
+// //        console.log(`${error}`.bgRed) 
+// //     }
+// // }
 
 // const connectDB = async () => {
 //     try {
-//         await mongoose.connect(process.env.MONGO_URL)
-//         console.log(`Server Running on ${mongoose.connection.host}`.bgCyan.white);
+//       const conn = await mongoose.connect(process.env.MONGO_URI);
+//       console.log(`MongoDB Connected: ${conn.connection.host}`);
 //     } catch (error) {
-//        console.log(`${error}`.bgRed) 
+//       console.log(error);
+//       process.exit(1);
 //     }
-// }
+//   }
+
+// module.exports = connectDB
+
+
+const mongoose = require('mongoose');
 
 const connectDB = async () => {
-    try {
-      const conn = await mongoose.connect(process.env.MONGO_URI);
-      console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-      console.log(error);
-      process.exit(1);
-    }
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log(`MongoDB Connected: ${mongoose.connection.host}`);
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to be handled in server.js
   }
+};
 
-module.exports = connectDB
+module.exports = connectDB;
